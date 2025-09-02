@@ -12,7 +12,11 @@ def index():
 
 @socketio.on('message')
 def handle_message(msg):
-    emit('message', msg, broadcast=True)
+    # Emite a mensagem original do usuário para todos os clientes
+    emit('message', f'Usuário: {msg}', broadcast=True)
+
+    # Emite a resposta do servidor
+    emit('message', 'Servidor: Oi!', broadcast=True)
 
 
 if __name__ == '__main__':
